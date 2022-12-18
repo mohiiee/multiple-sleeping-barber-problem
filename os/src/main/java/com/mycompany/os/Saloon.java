@@ -57,3 +57,4 @@ public class Saloon {
         return customerCount.get() == noOfWaitingChairs;
     }
 }
+/* comment */
