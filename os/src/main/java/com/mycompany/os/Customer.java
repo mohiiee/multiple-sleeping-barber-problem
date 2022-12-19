@@ -5,15 +5,11 @@
 package com.mycompany.os;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-/**
- *
- * @author DELL
- */
+
 public class Customer implements Runnable {
 
     private Saloon saloon;
     
-
     public Customer(Saloon saloon) {
         this.saloon = saloon;
     }
@@ -31,11 +27,11 @@ public class Customer implements Runnable {
         try{
             TimeUnit.SECONDS.sleep(duration);
         } catch (InterruptedException e){
-            e.printStackTrace();
+           
         }
         System.out.printf("%s arrived after %d seconds \n",Thread.currentThread().getName(),duration);
 
         }
     }
     
-/* comment */
+

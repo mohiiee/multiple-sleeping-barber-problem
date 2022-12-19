@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package com.mycompany.os;
 
 import java.util.concurrent.Semaphore;
@@ -21,11 +16,9 @@ public class Os {
         Scanner sc= new Scanner(System.in);
         int x =sc.nextInt();
         Saloon saloon =new Saloon (barberLock,customerLock,x);
-
         Barber barber = new Barber(barberLock,customerLock);
         Thread barberThread = new Thread(barber);
         barberThread.start();
-        
         
         for (int i =0;i<noOfCustomers ;i++){
 
@@ -34,15 +27,11 @@ public class Os {
             thread.setName("Customer: "+i);
 
             threads[i]=thread;
+            threads[i].start();
+            threads[i].join();
             
         }
-        for (int i=0;i<noOfCustomers;i++){
-            threads[i].start();
-        }
-        for (int i=0;i<noOfCustomers;i++){
-            threads[i].join();
-        }
+       
         barberThread.interrupt();
     }
 }
-/* comment */ 

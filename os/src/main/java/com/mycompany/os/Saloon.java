@@ -8,12 +8,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-/**
- *
- * @author DELL
- */
+
 public class Saloon {
     private Semaphore barberChair;
     private Semaphore barberLock;
@@ -42,12 +37,12 @@ public class Saloon {
         try {
             barberChair.acquire();
             customerCount.decrementAndGet();
+            System.out.printf("waking up\n ");
             System.out.printf("%s having haircut at %s\n",Thread.currentThread().getName(),new Date());
             barberLock.release();
             customerLock.acquire();
             System.out.printf("%s completed haircut at %s\n",Thread.currentThread().getName(),new Date());
         } catch (InterruptedException e) {
-            e.printStackTrace();
         }finally{
             barberChair.release();
         }
@@ -57,4 +52,3 @@ public class Saloon {
         return customerCount.get() == noOfWaitingChairs;
     }
 }
-/* comment */
